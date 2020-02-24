@@ -1,23 +1,23 @@
 ---
-title: "Requirements"
+title: "环境要求"
 category: "Getting Started"
 order: 1
 ---
 
-### Software's
+### 软件要求
 
 * [GIT](https://git-scm.com/downloads)
 * [PHP](php.net) >= 7.2 *(7.4 is recommended)*
-* PHP Extensions:
-   * OpenSSL PHP Extension
-   * PDO PHP Extension
-   * Mbstring PHP Extension
-   * Tokenizer PHP Extension
-   * BCMath PHP Extension *(required when the Hash ID feature is enabled)*
-   * Intl Extension *(required when you use the Localization Container)*
+* PHP 扩展:
+   * OpenSSL PHP 扩展
+   * PDO PHP 扩展
+   * Mbstring PHP 扩展
+   * Tokenizer PHP 扩展
+   * BCMath PHP 扩展 *(当 Hash ID 功能启用时需要该扩展)*
+   * Intl 扩展 *(当启动 Localization Container 时需要本扩展)*
 * [Composer](https://getcomposer.org/download/)
-* [Node](https://nodejs.org/en/) *(required for the API Docs generator feature)*
-* Web Server *(example: [Nginx](https://www.nginx.com/))*
-* Cache Engine *(example: [Redis](http://redis.io))*
-* Database Engine *(example: [MySQL](https://www.mysql.com/))*
-* Queues Engine *(example: [Beanstalkd](https://beanstalkd.github.io/))*
+* [Node](https://nodejs.org/en/) *(API 文档生成器功能需要)*
+* 网站服务器 *(例如: [Nginx](https://www.nginx.com/))*
+* 缓存引擎 *(例如: [Redis](http://redis.io))*
+* 数据库引擎 *(例如: [MySQL](https://www.mysql.com/))*
+* 队列引擎 *(例如: [Beanstalkd](https://beanstalkd.github.io/))*
