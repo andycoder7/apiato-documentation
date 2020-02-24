@@ -22,12 +22,12 @@ title: "欢迎使用 Apiato"
 <!-- **Apiato** is a framework for building scalable and testable API-Centric Applications with PHP, build on top of Laravel. -->
 **Apiato** 是一个基于 PHP 和 Laravel 的框架，它可以帮助我们方便的构建一个可扩展、易测试的、以 API 为中心的应用。
 <!-- It is designed to help you build scalable API's faster, by providing tools and functionalities that facilitates the development of any API-Centric App. -->
-我们可以用它提供的开发接口所需的基础工具和组件来更快的编写 API。
+我们可以用它提供的基础工具和组件来更快的编写 API。
 <!-- Apiato uses the best frameworks, tools and conventions in a very creative way, to deliver a rich set of features for a modern PHP Application. -->
 Apiato 把最棒的框架、工具和开发习惯奇妙的组合在了一起，并提供一系列丰富的功能集合，来帮助我们构建一个现代化的 PHP 应用。
 <!-- **Why!?** Because setting up a solid API from scratch is time consuming (and of course, time is money!).
 Apiato gives you the core features of robust API's fully documented, for free; so you can focus on writing your business logic, thus deliver faster to your clients. -->
-**为什么！？** 因为构建 API 是项目的时间消耗大户（没错，时间就是金钱！）。而构建一个健壮且自动文档化的API程序所需的核心功能 Apiato 都可以提供，然后，我们就可以专注与编写我们的业务逻辑代码，来帮助我们更快的向客户提供服务。
+**为什么！？** 因为构建 API 是项目的时间消耗大户（没错，时间就是金钱！）。而构建一个健壮且自动文档化的API程序所需的核心功能 Apiato 都可以提供，然后，我们就可以专注于编写我们的业务逻辑代码，来帮助我们更快的向客户提供服务。
 
 ### 功能
 
@@ -48,7 +48,7 @@ Alternatively, you can build it using the [MVC]({{ site.baseurl }}{% link _docs/
 
 ### 如何来阅读本文档
 
-本文档工包含 4 章节：
+本文档工包含 4 个章节：
 <!-- The documentation has 4 sections: -->
 
 <!-- - **Getting Started**: contains mainly the project installation steps.
@@ -75,7 +75,7 @@ Alternatively, you can build it using the [MVC]({{ site.baseurl }}{% link _docs/
 
 ### 惯例说明
 
-> The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be interpreted as described in RFC 2119 [[RFC2119](http://tools.ietf.org/html/rfc2119)].
+<!-- > The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be interpreted as described in RFC 2119 [[RFC2119](http://tools.ietf.org/html/rfc2119)]. -->
 
 > 本文中的关键词 “必须(MUST)”，“必须不(MUST NOT)”，“需要(REQUIRED)”，“应当(SHALL)”，“不应当(SHALL NOT)”，“应该(SHOULD)”，“不应该(SHOULD NOT)”，“建议(RECOMMENDED)”，“可能(MAY)”，‘可选的(OPTIONAL)’ 意思参见 RFC 2119 [[RFC2119](http://tools.ietf.org/html/rfc2119)]
 
@@ -219,7 +219,7 @@ Alternatively, you can build it using the [MVC]({{ site.baseurl }}{% link _docs/
 <a name="Getting started"></a>
 ## 开始
 
-安装并享受吧 ：）[installation guide]({{ site.baseurl }}{% link _docs/getting-started/installation.md %})
+安装并享受吧 ：）[安装指南]({{ site.baseurl }}{% link _docs/getting-started/installation.md %})
 
 
 <!--**LTS (Long-Term Support)** release is available. And offers support for 12 months, after the release date.-->
