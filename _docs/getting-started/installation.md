@@ -1,217 +1,213 @@
 ---
-title: "Installation"
-category: "Getting Started"
+title: "安装"
+category: "开始"
 order: 2
 ---
 
-* [A) Apiato Installation](#App)
-	* [1) Code Setup](#Code-Setup)
-		* [Option 1: Automatically via Composer](#App-Composer)
-		* [Option 2: Manually](#App-Git)
-	* [2) Database Setup](#Setup-Database)
-	* [3) OAuth Setup](#Prepare-OAuth)
-	* [4) Documentation Setup](#Documentation)
-	* [5) Testing Setup](#Testing)
-* [B) Environment Setup](#Development-Environment)
-	* [Option 1: Using Docker and Laradock](#Dev-Env-Opt-A)
-	* [Option 2: Using Vagrant and Homestead](#Dev-Env-Opt-B)
-	* [Option 3: Using MAMP/WAMP or something else](#Dev-Env-Opt-C)
-* [C) Play](#Play)
+* [A) Apiato 安装](#App)
+	* [1) 脚本设置](#Code-Setup)
+		* [方法 1: 通过 Composer 全自动](#App-Composer)
+		* [方法 2: 通过 Git 手动安装](#App-Git)
+	* [2) 数据库设置](#Setup-Database)
+	* [3) OAuth 2.0 设置](#Prepare-OAuth)
+	* [4) 文档设置](#Documentation)
+	* [5) 测试设置](#Testing)
+* [B) 开发环境配置](#Development-Environment)
+	* [方法 1: 使用 Laradock 和 Docker](#Dev-Env-Opt-A)
+	* [方法 2: 使用 Homestead 和 Vagrant](#Dev-Env-Opt-B)
+	* [方法 3: 使用 MAMP/WAMP 或者其他](#Dev-Env-Opt-C)
+* [C) 让我们嗨起来](#Play)
 
 
 <a name="App"></a>
-## A) Apiato Application Installation
+## A) Apiato 应用安装
 
-**Apiato** can be installed automatically with Composer (recommended) or manually (with Git or direct download):
+**Apiato** 可以通过 Composer（推荐）来全自动安装，或者通过 Git / 手动下载 来自行安装：
 
 <a name="Code-Setup"></a>
-### 1) Code Setup
+### 1) 脚本设置
 
 <a name="App-Composer"></a>
-#### 1.A) Automatically via Composer
+#### 1.A) 通过 Composer 全自动时
 
-1) Clone the repo, install dependencies and setup the project:
+1) 克隆代码仓库，安装依赖，然后配置：
 
-Option 1: Latest [stable](https://github.com/apiato/apiato/releases/latest):
+方法 1: 最新的 [稳定版](https://github.com/apiato/apiato/releases/latest):
 
 ```shell
 composer create-project apiato/apiato my-api
 ```
 
-Option 2: On going [development](https://github.com/apiato/apiato/commits/master) branch "dev master" *(unstable)*:
-*This gives you features from the upcoming releases. But you need to keep syncing your project with the upstream master
-branch and running `composer install` when changes occurs.*
+方法 2: 去 [开发](https://github.com/apiato/apiato/commits/master) 分支 "dev master" *(开发版)*:
+*这会给你提供下一版才具备的功能。但是当版本更新时，你需要通过运行 `composer install` 来让你的项目和仓库的主分支保持同步。*
 
 ```shell
 composer create-project apiato/apiato my-api dev-master
 ```
 
-2) Edit your `.env` variables to match with your environment (Set Database credentials, App URL, ...).
+2) 根据你的系统环境来编辑 `.env` 中的变量（设置数据库、访问地址等……）.
 
-3) Continue from [2) Database Setup](#Setup-Database) below.
+3) 然后进行下面的 [2) 数据库设置](#Setup-Database).
 
 <a name="App-Git"></a>
-#### 1.B) Manually
+#### 1.B) 通过 Git 手动安装
 
-You can download the Code directly from the repository as `.ZIP` file or clone the repository using `Git` (recommended):
+你可以直接从代码仓库下载 `.ZIP` 文件或者通过 `Git` 来克隆代码仓库（推荐使用 Git）：
 
-1) Clone the repository using `Git`:
+1) 使用 `Git` 来克隆代码仓库：
 
  ```shell
 git clone https://github.com/apiato/apiato.git
  ```
 
-> **Hint** <br>
-> If using [Laradock](http://laradock.io/), you can run all the commands below from the `workspace` Container. <br>
-> First you need to run the required tools by running `docker-compose up -d nginx mysql php-fpm workspace redis` from the Laradock folder _(of course you can add any other tools you need)_. <br>
-> Then enter the  `workspace` Container by running `docker-compose exec workspace bash`. <br>
-> For more details see the section **Using Docker (with Laradock)** below.
+> **提示** <br>
+> 如果你在使用 [Laradock](http://laradock.io/)，你可以尝试运行下面的这些来自于 `workspace` 容器的命令. <br>
+> 首先，你需要在 Laradock 的文件夹下通过运行 `docker-compose up -d nginx mysql php-fpm workspace redis` 来安装那些你需要的工具_（当然，你可以添加任何你需要的工具）_。<br>
+> 然后，通过运行 `docker-compose exec workspace bash` 进入 `workspace` 容器。 <br>
+> 更对信息可以查看之后的 **通过 Laradock 来使用 Docker** 章节。
 
-2) Install all dependency packages (including Containers dependencies):
+2) 安装所有的依赖包 (包括容器所需的依赖):
 
 ```shell
 composer install
 ```
 
-3) Create `.env` file and copy the content of `.env.example` inside it.
+3) 创建 `.env` 文件，然后把 `.env.example` 中的内容复制一份进去。
 
 ```shell
 cp .env.example .env
 ```
 
-*Check all the variables and edit whatever you want.*
+*按照你的本地环境来配置所有的变量*
 
-4) Generate a random key `APP_KEY`
+4) 生成随机密钥 `APP_KEY`
 
 ```shell
 php artisan key:generate
 ```
 
-5) delete the `.git` folder from the root directory and initialize your own with `git init`.
+5) 删除项目根目录中的 `.git` 文件夹，然后运行 `git init` 来初始化你自己的项目。
 
 <a name="Setup-Database"></a>
-### 2) Database Setup
+### 2) 数据库配置
 
-1) Migrate the Database:
+1) 数据库表结构迁移(Migrate):
 
-Run the migration artisan command:
+运行数据库表结构迁移命令：
 
 ```shell
 php artisan migrate
 ```
 
-2) Seed the database with the artisan command:
+2) 运行命令来填充初始和测试数据：
 
 ```shell
 php artisan db:seed
 ```
 
-3) Optional. By default Apiato seeds a "Super User", given the default `admin` role (the role has no Permissions set
-to it).
+3) 可选的：默认情况下 Apiato 会填充一个 "超级用户", 并给它 `admin` 角色 (这个角色没有任何的权限限制)。
 
-To give the `admin` role, access to all the seeded permissions in the system, run the following command, at any time.
+在任何时候，运行下面的命令，都可以给 `admin` 角色全部系统中默认填充的权限。
 
 ```
 php artisan apiato:permissions:toRole admin
 ```
 
 <a name="Prepare-OAuth"></a>
-### 3) OAuth 2.0 Setup
+### 3) OAuth 2.0 设置
 
-1) Create encryption keys to generate secure access tokens and create "personal access" and "password grant" clients
-which will be used to generate access tokens:
+1) 创建加密密钥来生成安全的访问令牌，并创建 "个人权限" 和 "密码授权" 客户端，这两个客户端将被用于生成访问令牌：
 
 ```shell
 php artisan passport:install
 ```
 
 <a name="Documentation"></a>
-### 4) Documentation Setup
+### 4) 文档设置
 
-If you are planning to use ApiDoc JS then proceed with this setup, else skip this and use whatever you prefer:
+如果你准备使用 ApiDoc JS，那么请执行以下设置，不准备的话你可以选择跳过：
 
-1) Install [ApiDocJs](http://apidocjs.com/) using NPM or your favorite dependencies manager:
+1) 使用 NPM 或者你喜欢的依赖管理工具来安装 [ApiDocJs](http://apidocjs.com/)：
 
-*You can install it Globally with `-g` or locally in the project without `-g`*
+*你可以通过 `-g` 参数来全局安装，也可以不加 `-g` 参数来仅安装在项目本地*
 
 ```shell
 npm install apidoc
 ```
 
-Or install it by just running `npm install` on the root of the project, after checking the `package.json` file on the
-root.
+如果你在项目根目录的 `package.json` 文件中确认包含了 ApiDoc JS，那么你只需要在项目根目录执行 `npm install` 就可以完成安装了。
 
-2) Run `php artisan apiato:docs`
 
-Behind the scene `apiato:docs` is executing a command like this
+2) 运行 `php artisan apiato:docs`
+
+在 `apiato:docs` 之后，执行一个类似如下的命令：
 
 ```
 apidoc -c app/Containers/Documentation/ApiDocJs/public -f public.php -i app -o public/api/documentation
 ```
 
-##### Visit [API Docs Generator]({{ site.baseurl }}{% link _docs/features/api-docs-generator.md %}) for more details.
+##### 更多信息请查看 [API 文档生成器]({{ site.baseurl }}{% link _docs/features/api-docs-generator.md %})。
 
 <a name="Testing"></a>
-### 5) Testing Setup
+### 5) 测试配置
 
-1) Open `phpunit.xml` and make sure the environments are correct for your domain.
+1) 打开 `phpunit.xml` 文件，检测确认其中的环境变量与你的域名相匹配。
 
-2) run the tests
+2) 运行测试
 
 ```shell
 vendor/bin/phpunit
 ```
 
 <a name="Development-Environment"></a>
-## B) Development Environment Setup
+## B) 开发环境设置
 
-You can run **Apiato** on your favorite environment. Below you'll see how you can run it on top of
-[Vagrant](https://www.vagrantup.com/) (using [Laravel Homestead](https://laravel.com/docs/master/homestead)) or
-[Docker](https://www.docker.com/) (using [Laradock](https://github.com/Laradock/laradock)).
+你可以选择你喜欢的开发环境去运行 **Apiato** 。本文会讲解你如何在 
+[Vagrant](https://www.vagrantup.com/) (通过 [Laravel Homestead](https://laravel.com/docs/master/homestead)) 或者
+[Docker](https://www.docker.com/) (通过 [Laradock](https://github.com/Laradock/laradock))中运行 Apiato。
 
-We'll see how to use both tools and you can pick one, or you can use other options like
-[Larvel Valet](https://laravel.com/docs/valet), [Laragon](https://laragon.org/) or even run it directly on your machine.
+你可以选择其中一个，当然，你可以选择其他的方案，例如：
+[Larvel Valet](https://laravel.com/docs/valet), [Laragon](https://laragon.org/) 或者直接在你本机运行。
 
-> **Heads up!** <br>
-> The ICANN has now officially approved `.dev` as a generic top level domain (gTLD). Therefore, it is **not** recommended
-> to use `.dev` domains any more in your local development setup! Our docs has been changed to use `.test`
-> instead of `.dev`, however, you may change it to `.example`, or `.localhost` or whatever suits your needs. [Read more](http://www.faqs.org/rfcs/rfc2606.html).
+> **注意!** <br>
+> ICANN 已经官方支持 `.dev` 是一个通用顶级域名 (gTLD)。所以 **不** 再建议在本地开发环境配置中使用 `.dev` 域名！本文已经改用 `.test` 来取代 `.dev`。
+> 当然，你也可以选择改用 `.example`, 或者 `.localhost` 或任何满足你实际情况的域名。 [了解更多](http://www.faqs.org/rfcs/rfc2606.html).
 
 <a name="Dev-Env-Opt-A"></a>
-### A.1) Using Docker (with Laradock)
+### A.1) 使用 Docker (通过 Laradock)
 
-**Laradock** is a Docker PHP development environment. It facilitate running PHP Apps on Docker.
+**Laradock** 是一个包含 PHP 开发环境的 Docker，可以让我们非常方便在 Docker 中运行 PHP 应用。
 
-1) Install [Laradock](https://github.com/LaraDock/laradock#installation).
+1) 安装 [Laradock](https://github.com/LaraDock/laradock#installation).
 
-2) Navigate into the `laradock` directory:
+2) 跳转到 `laradock` 文件夹:
 
 ```shell
 cd laradock
 ```
-This directory contains a `docker-compose.yml` file. (From the LaraDock project).
+这个文件夹包含一个 `docker-compose.yml` 文件。 (来自于 LaraDock 项目)。
 
-2.1) If you haven't done so, rename `env-example` to `.env`.
+2.1) 如果你没有这么做，把 `env-example` 文件拷贝并重命名为 `.env`。
 
 ```shell
 cp env-example .env
 ```
 
-3) Run the Docker containers:
+3) 创建 docker 容器
 
 ```shell
 docker-compose up -d nginx mysql redis beanstalkd
 ```
 
-4) Make sure you are setting the `Docker IP` as `Host` for the `DB` and `Redis`  in your `.env` file.
+4) 确认你在 `.env` 文件中设置的 `Docker IP` 是 `DB` 和 `Redis` 的 `Host`。 
 
-5) Add the domain to the Hosts file:
+5) 给 Hosts 文件添加域名：
 
-5.1) Open the hosts file on your local machine `/etc/hosts`.
+5.1) 在你本机打开 `/etc/hosts` 文件。
 
-*We'll be using `apiato.test` as local domain (you can change it if you want).*
+*我们将使用 `apiato.test` 作为本地域名 (你可以按照任何你的喜好随意修改)。*
 
-5.2) Map the domain and its subdomains to 127.0.0.1:
+5.2) 把域名及其子域名映射到本机 127.0.0.1:
 
 ```text
 127.0.0.1  apiato.test
@@ -219,22 +215,22 @@ docker-compose up -d nginx mysql redis beanstalkd
 127.0.0.1  admin.apiato.test
 ```
 
-If you're using NGINX or Apache, make sure the **server_name** (in case of NGINX) or **ServerName** (in case of Apache)
-in your the server config file, is set to the following `apiato.test api.apiato.test admin.apiato.test`.
-*(Also don't forget to point the **Root** or **DocumentRoot** to the public directory inside apiato `apiato/public`)*.
+如果你使用 NGINX 或者 Apache，请确保在你的系统配置文件中 **server_name** (NGINX 里的) 或者 **ServerName** (Apache 里的)被设置为
+`apiato.test api.apiato.test admin.apiato.test`。
+*(同样，不要忘了把 **Root** 或者 **DocumentRoot** 指向 apiato 中的 public 文件夹，即 `apiato/public`)*。
 
 <a name="Dev-Env-Opt-B"></a>
-### A.2) Using Vagrant (with Laravel Homestead)
+### A.2) 使用 Vagrant (通过 Laravel Homestead)
 
-1) Configure Homestead:
+1) 配置 Homestead：
 
-1.1) Open the Homestead config file:
+1.1) 打开 Homestead 配置文件：
 
 ```shell
 homestead edit
 ```
 
-1.2) Map the `api.apiato.test` domain to the project public directory - Example:
+1.2) 把 `api.apiato.test` 域名映射到项目的 public 目录 - 例如：
 
 ```text
 sites:
@@ -242,7 +238,7 @@ sites:
   	  to: /{full-path-to}/apiato/public
 ```
 
-1.3) You can also map other domains like `apiato.test` and `admin.apiato.test` to other web apps:
+1.3) 你可以把其他其他域名像是： `apiato.test` 和 `admin.apiato.test` 映射到其他的网页应用：
 
 ```text
 	- map: apiato.test
@@ -251,10 +247,9 @@ sites:
   	  to: /{full-path-to}/clients/web/admin
 ```
 
-Note: in the example above the `/{full-path-to}/clients/web/***` are separate apps, who live on their own repositories
-and in different folder then the Apiato one. If your Admins, Users or other type of Apps are within Apiato, then you
-must point them all to the Apiato project folder `/{full-path-to}/apiato/public`. So in that case you would have
-something like this:
+注意: 以上示例中的 `/{full-path-to}/clients/web/***` 是相互独立的不同的的应用。它们都拥有各自的代码仓库，在不同的文件夹中，但是都属于同一个 Apiato。
+如果你的管理员、用户、或者其他类别的应用都基于 Apiato，那么你需要把它们都指向 Apiato 的项目文件夹 `/{full-path-to}/apiato/public`。
+如果这样的话，你应该会有一个类似这样的配置：
 
 ```text
     - map: api.apiato.test
@@ -265,13 +260,13 @@ something like this:
       to: /{full-path-to}/apiato/public
 ```
 
-2) Add the domain to the Hosts file:
+2) 在 Hosts 文件中添加域名：
 
-2.1) Open the hosts file on your local machine `/etc/hosts`.
+2.1) 在你本机打开 `/etc/hosts` 文件。
 
-*We'll be using `apiato.test` as local domain (you can change it if you want).*
+*我们将使用 `apiato.test` 作为本地域名 (你可以按照任何你的喜好随意修改)。*
 
-2.2) Map the domain and its subdomains to the Vagrant IP Address:
+2.2) 把域名及其子域名映射到 Vagrant 的 IP 地址：
 
 ```text
 192.168.10.10   apiato.test
@@ -279,52 +274,52 @@ something like this:
 192.168.10.10   admin.apiato.test
 ```
 
-If you're using NGINX or Apache, make sure the **server_name** (in case of NGINX) or **ServerName** (in case of Apache)
-in your the server config file, is set to the following `apiato.test api.apiato.test admin.apiato.test`.
-*(Also don't forget to set your **root** or **DocumentRoot** to the public directory inside apiato `apiato/public`)*.
+如果你使用 NGINX 或者 Apache，请确保在你的系统配置文件中 **server_name** (NGINX 里的) 或者 **ServerName** (Apache 里的)被设置为
+`apiato.test api.apiato.test admin.apiato.test`。
+*(同样，不要忘了把 **Root** 或者 **DocumentRoot** 指向 apiato 中的 public 文件夹，即 `apiato/public`)*。
 
-2.3) Run the Virtual Machine:
+2.3) 运行虚拟机：
 
 ```shell
 homestead up --provision
 ```
 
-*If you see `No input file specified` on the sub-domains!
-try running this command `homestead halt && homestead up --provision`.*
+*如果你在访问子域名时看到 `No input file specified` !
+请尝试执行 `homestead halt && homestead up --provision`。*
 
 <a name="Dev-Env-Opt-C"></a>
-### A.3) Using something else
+### A.3) 使用其他方式
 
-If you're not into virtualization solutions, you can setup your environment directly on your machine. Check the
-[software's requirements list]({{ site.baseurl }}{% link _docs/getting-started/requirements.md %}).
+如果你不想在虚拟环境安装部署，你可以可以直接在你本机安装。请确认
+[环境要求列表]({{ site.baseurl }}{% link _docs/getting-started/requirements.md %})都已满足。
 
 <a name="Play"></a>
-## C) Let's Play
+## C) 让我们嗨起来
 
-Now let's see it in action
+现在你可以看到它了。
 
-1.a. Open your web browser and visit:
+1.a. 打开你的浏览器，然后访问：
 
-- `http://apiato.test` You should see an HTML page, with `Apiato` in the middle.
-- `http://admin.apiato.test` You should see an HTML Login page.
+- `http://apiato.test` 你应该看到一个 `Apiato` 在正当中的网页。
+- `http://admin.apiato.test` 你应该看到一个登录页面。
 
-1.b. Open your HTTP client and call:
+1.b. 打开你的 HTTP 客户端，然后发起请求：
 
-- `http://api.apiato.test/` You should see a JSON response with message: `"Welcome to apiato."`,
-- `http://api.apiato.test/v1` You should see a JSON response with message: `"Welcome to apiato (API V1)."`,
+- `http://api.apiato.test/` 你应该看到一个 JSON 格式的响应数据，内容是：`"Welcome to apiato."`,
+- `http://api.apiato.test/v1` 你应该看到一个 JSON 格式的响应数据，内容是： `"Welcome to apiato (API V1)."`,
 
-2) Make some HTTP calls to the API:
+2) 向 API 发起 HTTP 请求：
 
-*To make the calls you can use [Postman](https://www.getpostman.com/), [HTTPIE](https://github.com/jkbrzt/httpie) or
-any other tool you prefer.*
+*你可以使用 [Postman](https://www.getpostman.com/), [HTTPIE](https://github.com/jkbrzt/httpie) 或者
+其他任何你喜欢的工具来发起 HTTP 请求*
 
-Let's test the (user registration) endpoint `http://api.apiato.test/v1/register ` with **cURL**:
+让我们用 **cURL** 来测试 `http://api.apiato.test/v1/register` 接口 (用户注册) ：
 
 ```shell
 curl -X POST -H "Accept: application/json" -H "Cache-Control: no-cache" -F "email=mahmoud@zalt.me" -F "password=so-secret" -F "name=Mahmoud Zalt" "http://api.apiato.test/v1/register"
 ```
 
-You should get response like this:
+你应该获得如下响应内容：
 
 ```json
 Access-Control-Allow-Origin → ...

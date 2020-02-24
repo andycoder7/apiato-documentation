@@ -1,6 +1,6 @@
 ---
-title: "Responses"
-category: "Getting Started"
+title: "响应"
+category: "开始"
 order: 5
 ---
 

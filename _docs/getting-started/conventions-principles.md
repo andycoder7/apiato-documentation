@@ -1,6 +1,6 @@
 ---
-title: "Conventions and Principles"
-category: "Getting Started"
+title: "原则与约定"
+category: "开始"
 order: 7
 ---
 

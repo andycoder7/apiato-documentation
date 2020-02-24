@@ -1,6 +1,6 @@
 ---
 title: "环境要求"
-category: "Getting Started"
+category: "开始"
 order: 1
 ---
 

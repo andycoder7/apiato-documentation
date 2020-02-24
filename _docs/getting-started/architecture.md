@@ -1,6 +1,6 @@
 ---
-title: "Software Architectural Patterns"
-category: "Getting Started"
+title: "软件架构模式"
+category: " 开始"
 order: 6
 ---
 
