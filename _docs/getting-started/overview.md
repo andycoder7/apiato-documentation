@@ -4,23 +4,23 @@ category: "开始"
 order: 3
 ---
 
-* [Quick Overview](#Quick-Overview)
-  * [The basic flow](#basic-flow)
-  * [Sample Route Endpoint](#sample-route)
-  * [Controller Function](#control-fun)
-  * [Sample Action](#sample-action)
-  * [Sample User Response](#user-res)
+* [概览](#Quick-Overview)
+  * [基础工作流](#basic-flow)
+  * [一个简单的路由（Route）访问点（Endpoint）](#sample-route)
+  * [一个简单的控制器（Controller）方法](#control-fun)
+  * [一个简单的执行动作（Action）](#sample-action)
+  * [一个简单的用户响应（Response）](#user-res)
 
 <a name="Quick-Overview"></a>
-## Quick Overview
+## 概览
 
 <a name="basic-flow"></a>
-### The basic flow
+### 基础工作流
 
-When an HTTP request is received, it first hits your predefined Endpoint (each endpoint live in its own Route file).
+当一个 HTTP 请求被收到时，它首先会触发你预定义的访问点（Endpoint），每个访问点（Endpoint）都拥有自己的路由（Route）文件。
 
 <a name="sample-route"></a>
-#### Sample Route Endpoint
+#### 一个简单的路由（Route）访问点（Endpoint）
 
 ```php
 <?php
@@ -29,11 +29,10 @@ $router->get('hello', [
 ]);
 ```
 
-After the user makes a request to the endpoint `[GET] www.api.apiato.com/v1/hello` it calls the defined controller 
-function (`sayHello`).
+在用户发起一个请求 `[GET] www.api.apiato.com/v1/hello` 到访问点（Endpoint）之后，它会去调用定义好的控制器（controller）方法（`sayHello`）。
 
 <a name="control-fun"></a>
-#### Sample Controller Function
+#### 一个简单的控制器（Controller）方法
 
 ```php
 <?php
@@ -50,13 +49,13 @@ class Controller extends ApiController
 }
 ```
 
-This function takes a Request class `SayHelloRequest` to automatically checks if the user has the right access to this 
-endpoint. _Only if the user has access, it proceed to the function body._
+这个方法通过接受一个请求类 `SayHelloRequest` 来自动判断用户是否具有权限。
+_仅当用户具有权限时，它才会进入函数体继续执行。_
 
-Then the function calls an Action (`SayHelloAction`) to perform the business logic.
+之后这个方法调用一个执行动作（Action）(`SayHelloAction`) 来处理业务逻辑。
 
 <a name="sample-action"></a>
-#### Sample Action
+#### 一个简单的执行动作（Action）
 
 ```php
 <?php
@@ -69,14 +68,14 @@ class SayHelloAction extends Action
 }
 ```
 
-The Action can do anything then return a result (could be Object, String or anything).
+在执行动作（Action）中可以做任何事情，然后返回一个结果（结果可以是一个对象，也可以是字符串或者任何内容）。
 
-When the Action finishes its job, the controller function gets ready to build a response.
+当执行动作（Action） 执行完毕，控制器（Controller）方法会准备好构建一个请求响应（Response）。
 
-Json responses can be built using the helper function `json` (`$this->json(['foo' => 'bar']);`).
+可以通过工具方法 `json` (`$this->json(['foo' => 'bar']);`) 来构建 Json 格式的请求响应（Responses）。
 
 <a name="user-res"></a>
-#### Sample User Response
+#### 一个简单的用户响应（Response）
 
 ```json
 [

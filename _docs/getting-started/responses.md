@@ -4,27 +4,26 @@ category: "开始"
 order: 5
 ---
 
-* [Apiato Response](#Res-payload)
-* [Default Apiato Responses Payload](#Def-Res-payload)
-* [Change the default Response payload](#change-apiao-res-payload)
-* [Resource Keys](#Resource-Keys)
-* [Error Responses formats](#Error-Res-Format)
-* [Building a Responses from the Controller](#build-res-from-con)
+* [Apiato 响应（Response）](#Res-payload)
+* [默认 Apiato 响应（Response）内容](#Def-Res-payload)
+* [修改默认响应（Response）内容](#change-apiao-res-payload)
+* [资源密钥](#Resource-Keys)
+* [错误响应（Response）格式](#Error-Res-Format)
+* [在控制器（Controller）中构建一个响应（Response）](#build-res-from-con)
 
 <a name="Res-payload"></a>
-### Apiato Response
+### Apiato  响应（Response）
 
-In Apiato you can define your own response payload or use one of the supported serializers.
+在 Apiato 中，你可以自定义你的响应（Response）内容，或者使用框架中已经提供的序列化器之一。
 
-Currently the supported serializers are (`ArraySerializer`, `DataArraySerializer` and `JsonApiSerializer`). As provided
-by [Fractal](http://fractal.thephpleague.com/transformers/).
+当前已经提供的序列化器包括： (`ArraySerializer`, `DataArraySerializer` 和 `JsonApiSerializer`)。通过 [Fractal](http://fractal.thephpleague.com/transformers/) 提供。
 
-By default Apiato uses `DataArraySerializer`. Below is an example of the response payload.
+默认情况下 Apiato 使用 `DataArraySerializer`。 下面是一个响应（Response）内容的例子
 
 <a name="Def-Res-payload"></a>
-### Default Apiato Responses Payload:
+### 默认 Apiato 响应（Response）内容：
 
-`DataArraySerializer` pesponse payload look like this:
+`DataArraySerializer` 响应（Response）内容看上去就像这样：
 
 ```json
 {
@@ -33,7 +32,7 @@ By default Apiato uses `DataArraySerializer`. Below is an example of the respons
       "id": 100,
       ...
       "relation 1": {
-        "data": [ // multiple data
+        "data": [ // 多重、复杂的数据
           {
             "id": 11,
 			  ...
@@ -41,7 +40,7 @@ By default Apiato uses `DataArraySerializer`. Below is an example of the respons
         ]
       },
       "relation 2": {
-        "data": { // single data
+        "data": { // 单一、简单的数据
           "id": 22,
           ...
           }
@@ -62,7 +61,7 @@ By default Apiato uses `DataArraySerializer`. Below is an example of the respons
       }
     }
   },
-  "include": [ // what can be included
+  "include": [ // 什么可以被包含
     "xxx",
     "yyy"
   ],
@@ -70,9 +69,9 @@ By default Apiato uses `DataArraySerializer`. Below is an example of the respons
 }
 ```
 
-**Paginated response:**
+**分页的响应：**
 
-When data is paginated the response payload will contain a `meta` description about the pagination.
+当数据已经被分页处理时，响应的内容将包含一个 `meta` 字段来描述分页信息。
 
 ```json
 {
@@ -88,7 +87,7 @@ When data is paginated the response payload will contain a `meta` description ab
       }
     }
   },
-  "include": [ // what can be included
+  "include": [ // 什么可以被包含
     "xxx",
     "yyy"
   ],
@@ -96,63 +95,60 @@ When data is paginated the response payload will contain a `meta` description ab
 }
 ```
 
-**Includes:**
+**Includes 字段说明：**
 
-Informs the User about what relationships can be include in the response. Example: `?include=tags,user`
+通知用户在这个响应（Response）中，什么关系数据是可以被包含的。例如：`?include=tags,user`
 
-For more details read the `Relationships` section in the [Query Parameters]({{ site.baseurl }}{% link _docs/features/query-parameters.md %}) page.
+更多信息可以阅读 [请求参数]({{ site.baseurl }}{% link _docs/features/query-parameters.md %}) 页面的 `关联关系` 一节。
 
 <a name="change-apiao-res-payload"></a>
-### Change the default Response payload:
+### 修改默认响应（Response）内容：
 
-The default response format (specification) is the `DataArray` Fractal Serializer (`League\Fractal\Serializer\DataArraySerializer`).
+默认情况下，响应（Response）的格式处理被指定为 `DataArray` Fractal Serializer (`League\Fractal\Serializer\DataArraySerializer`)。
 
-To change the default Fractal Serializer open the `app/Ship/Configs/fractal.php` file and change the
+你可以打开 `app/Ship/Configs/fractal.php` 文件来修改默认的 Fractal Serializer。
 
 ```text
 'default_serializer' => League\Fractal\Serializer\DataArraySerializer::class,
 ```
 
-The Supported Serializers are
+支持的序列化器（Serializers） 包括：
 * `ArraySerializer`
 * `DataArraySerializer`
 * `JsonApiSerializer`
 
-More details can be found at [Fractal](http://fractal.thephpleague.com/transformers/) and
-[Laravel Fractal Wrapper](https://github.com/spatie/laravel-fractal).
+更多的信息可以查阅 [Fractal](http://fractal.thephpleague.com/transformers/) 和
+[Laravel Fractal Wrapper](https://github.com/spatie/laravel-fractal)。
 
-In case of returning JSON Data (`JsonApiSerializer`), you may wish to check some JSON response standards:
+在需要返回 Json 数据格式 (`JsonApiSerializer`) 的情况下, 你可能需要查询一些 JSON 响应标准：
 
-* [JSEND](https://labs.omniti.com/labs/jsend) (very basic)
-* [JSON API](http://jsonapi.org/format/) (very popular and well documented)
-* [HAL](http://stateless.co/hal_specification.html) (useful in case of hypermedia)
+* [JSEND](https://labs.omniti.com/labs/jsend) (非常基础)
+* [JSON API](http://jsonapi.org/format/) (非常流行，并且文档详尽)
+* [HAL](http://stateless.co/hal_specification.html) (对于超文本来说非常有用，例如图像、视频、音频等)
 
 <a name="Resource-Keys"></a>
-### Resource Keys
+### 资源密钥
 
-#### For JsonApiSerializer.
+#### 对于 JsonApiSerializer 来说。
 
-The transformer allows appending a `ResourceKey` to the transformed resource. You can set the `ResourceKey` in your
-response payload in 2 ways:
+转换器（transformer）允许添加一个 `ResourceKey` 来转换资源文件。你可以用一下两种方式在你的响应（Response）内容中添加 `ResourceKey`：
 
-1. Manually set it via the respective parameter in the `$this->transform()` call. Note that this will only set the
-`top level` resource key and does not affect the resource keys from `included` resources!
-2. Specify it on the respective `Model`. By overriding the the $resourceKey, (`protected $resourceKey = 'FooBar';`).
-If no `$resourceKey` is defined at the `Model`, the `ShortClassName` is used as key. For example, the `ShortClassName` of
-the `App\Containers\User\Models\User::class` is `User`.
+1. 通过调用 `$this->transform()` 方法各自的参数来手动的设置。注意，这只能设置 `top level` 的资源密钥，并且对 `included` 中的资源无效！
+2. 通过在各自的 `Model` 文件中重载 `$resourceKey` 变量来指定资源密钥, (`protected $resourceKey = 'FooBar';`)。
+如果 `Model` 文件中没有定义 `$resourceKey`, 将使用 `ShortClassName` 作为资源密钥。
+例如 `App\Containers\User\Models\User::class` 的 `ShortClassName` 是 `User`。
 
-#### For DataArraySerializer.
+#### 对于 DataArraySerializer 来说。
 
-By default the `object` keyword is used as a resource key for each response, and it's set manually in each transformer,
-*to be automated later*.
+默认情况下， `object` 字段将被用作每次响应（Response）的资源密钥, 可以在每一个转换器（transformer）中手动设置，
+*以后将全自动化*.
 
 <a name="Error-Res-Format"></a>
-### Error Responses formats
+### 错误响应（Response）格式
 
-Visit each feature, example the Authentication and there you will see how an unauthenticated response looks like, same
-for Authorization, Validation and so on.
+请求任意一个功能，例如认证功能，你将看到一个未授权响应是长什么样的。对于校验等功能来说也是一样。
 
 <a name="build-res-from-con"></a>
-## Building a Responses from the Controller:
+## 在控制器（Controller）中构建一个响应（Response）：
 
-Checkout the [Controller response builder helper functions]({{ site.baseurl }}{% link _docs/components/controllers.md %}).
+请查看 [控制器响应工具函数]({{ site.baseurl }}{% link _docs/components/controllers.md %}) 章节。
