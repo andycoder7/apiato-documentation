@@ -4,81 +4,81 @@ category: "开始"
 order: 7
 ---
 
-* [HTTP Methods usage in RESTful API's](#HTTP-Methods)
-* [Naming Conventions for Routes & Actions](#Naming-Conventions)
-* [General guidelines and principles for RESTful URLs](#General-guidelines)
-* [Good URL examples](#Good-examples)
-* [General principles for HTTP methods](#General-principles)
+* [RESTful 风格的 HTTP 方法](#HTTP-Methods)
+* [路由（Route）和执行动作（Action）的命名约定](#Naming-Conventions)
+* [RESTful 风格的 URL 规范说明](#General-guidelines)
+* [好的 URL 案例](#Good-examples)
+* [关于 HTTP 方法的一些原则说明](#General-principles)
 
 <a name="HTTP-Methods"></a>
-### HTTP Methods usage in RESTful API's
-- GET (SELECT): retrieve a specific resource from the server, or a listing of resources.
-- POST (CREATE): create a new resource on the server.
-- PUT (UPDATE): update a resource on the server, providing the entire resource.
-- PATCH (UPDATE): update a resource on the server, providing only changed attributes.
-- DELETE (DELETE): remove a resource from the server.
+### RESTful 风格的 HTTP 方法
+- GET (查询): 从服务器检索一个特定的资源，或者该资源的集合。
+- POST (新增): 在服务器上新增一个资源。
+- PUT (更新): 更新服务器上某一个资源的全部属性（需要提供全部属性，哪怕该属性没有变动）。
+- PATCH (更新): 更新服务器上某一项资源的部分属性（只提供修改的属性）。
+- DELETE (删除): 从服务器上移除某一个资源。
 
 <a name="Naming-Conventions"></a>
-### Naming Conventions for Routes & Actions
+### 路由（Route）和执行动作（Action）的命名约定
 
-- **GetAllResource**: to fetch all resources. You can apply `?search` query parameter to filter data.
-- **FindResourceByID**: to search for single resource by its unique identifier.
-- **CreateResource**: to create a new resource.
-- **UpdateResource**: to update/edit existing resource.
-- **DeleteResource**: to delete a resource.
+- **GetAllResource**: 获取全部资源，你可以通过 `?search` 参数来筛选数据。
+- **FindResourceByID**: 通过唯一主键来搜索一个资源。
+- **CreateResource**: 创建一个资源
+- **UpdateResource**: 更新现有的资源。
+- **DeleteResource**: 删除一个资源。
 
 <a name="General-guidelines"></a>
-### General guidelines and principles for RESTful URLs
+### RESTful 风格的 URL 规范说明
 
-- A URL identifies a resource.
-- URLs should include nouns, not verbs.
-- Use plural nouns only for consistency (no singular nouns).
-- Use HTTP verbs (GET, POST, PUT, DELETE) to operate on the collections and elements.
-- You should not need to go deeper than resource/identifier/resource.
-- Put the version number at the base of your URL, for example `http://apiato.test/v1/path/to/resource`.
-- If an input data changes the logic of the endpoint, it should be passed in the URL. If not can go in the header "like Auth Token".
-- Don't use query parameters to alter state.
-- Don't use mixed-case paths if you can help it; lowercase is best.
-- Don't use implementation-specific extensions in your URIs (.php, .py, .pl, etc.)
-- Limit your URI space as much as possible. And keep path segments short.
-- Don't put metadata in the body of a response that should be in a header
+- 一个 URL 定义一个资源。
+- URL 应当只包含名词，不包含动词。
+- 应当统一使用名词的复数形式。
+- 使用 HTTP 的方法 (GET, POST, PUT, DELETE) 来操作集合和元素。
+- 不建议资源放的比这（resource/identifier/resource）还深。
+- 版本信息应该放在 URL 的起始位置，例如： `http://apiato.test/v1/path/to/resource`.
+- 如果传入的数据会改变访问点的逻辑，那么它应该放在 URL 中，如果不行，那就放在 header 中，例如 Auth Token。
+- 不要使用请求参数来改变状态。
+- 不建议 URL 路径混合大小写，全小写是最好不过的。
+- 不要在你的 URI 中使用特定的扩展名，例如（.php, .py, .pl, 等）。
+- 组织好你的 URI，保持路径简短清晰。
+- 不要把元数据放在响应的 body 里，它应该被放在 header 中。
 
 <a name="Good-examples"></a>
-### Good URL examples
+### 好的 URL 案例
 
-- Find a single Car by its unique identifier (ID):
+- 通过唯一编码来获取某一辆车的信息：
 	- `GET http://www.api.apiato.test/v1/cars/123`
-- Get all Cars:
+- 获取全部车辆信息：
 	- `GET http://www.api.apiato.test/v1/cars`
-- Find/Search cars by one or more fields:
+- 通过一个或多个条件来搜索车辆信息：
 	- `GET http://www.api.apiato.test/v1/cars?search=maker:mercedes`
 	- `GET http://www.api.apiato.test/v1/cars?search=maker:mercedes;color:white`
-- Order and Sort query result:
+- 需要有序的结果队列：
 	- `GET http://www.api.apiato.test/v1/cars?orderBy=created_at&sortedBy=desc`
 	- `GET http://www.api.apiato.test/v1/cars?search=maker:mercedes&orderBy=created_at&sortedBy=desc`
-- Specify optional fields:
+- 获取车辆的指定属性信息：
 	- `GET http://www.api.apiato.test/v1/cars?filter=id;name;status`
 	- `GET http://www.api.apiato.test/v1/cars/123?filter=id;name;status`
-- Get all Drivers belonging to a Car:
+- 获取这辆车的全部驾驶员：
 	- `GET http://www.api.apiato.test/v1/cars/123/drivers`
 	- `GET http://www.api.apiato.test/v1/cars/123/drivers/123/addresses`
-- Include Drivers objects relationship with the car response:
+- 在车辆信息的返回的时候带上该车辆的其他关联主体：
 	- `GET http://www.api.apiato.test/v1/cars/123?include=drivers`
 	- `GET http://www.api.apiato.test/v1/cars/123?include=drivers,owner`
-- Add new Car:
+- 新增一部车辆信息
 	- `POST http://www.api.apiato.test/v1/cars`
-- Add new Driver to a Car:
+- 为一辆车新增驾驶员信息
 	- `POST http://www.api.apiato.test/v1/cars/123/drivers`
 
 <a name="General-principles"></a>
-### General principles for HTTP methods
+### 关于 HTTP 方法的一些原则说明
 
-- Don't ever use GET to alter state; to prevent Googlebot from corrupting your data. And use GET as much as possible.
-- Don't use PUT unless you are updating an entire resource. And unless you can also legitimately do a GET on the same URI.
-- Don't use POST to retrieve information that is long-lived or that might be reasonable to cache.
-- Don't perform an operation that is not idempotent with PUT.
-- Use GET for things like calculations, unless your input is large, in which case use POST.
-- Use POST in preference to PUT when in doubt.
-- Use POST whenever you have to do something that feels RPC-like.
-- Use PUT for classes of resources that are larger or hierarchical.
-- Use DELETE in preference to POST to remove resources.
+- 为了防止 Google 的爬虫不小心修改你的数据，不要用 GET 方法来改变数据。其他情况尽可能使用 GET 方法。
+- 除非你要更新整个资源信息或者可以合理的对这个 URI 使用 GET 方法，否则不要用 PUT 方法。
+- 不要使用 POST 方法来获取长期不变的数据，因为它有可能会被缓存。
+- 不要用 PUT 方法去执行一个不幂等的操作。
+- 如果你的数据量很大用 POST，正常情况下请用 GET 方法来获取一些例如计算结果之类的数据。
+- 如果有疑惑的话，那就采用 POST 而不是 PUT 方法。
+- 无论何时，如果你要做一些像是 RPC 的操作，那就请使用 POST 方法。
+- 对于分级的资源，请使用 PUT 方法来操作各级的资源
+- 一般使用 DELETE 而不是 POST 方法来删除资源。
