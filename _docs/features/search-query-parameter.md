@@ -1,6 +1,6 @@
 ---
-title: "Search Query Parameter"
-category: "Features"
+title: "搜索参数"
+category: "功能"
 order: 101
 ---
 

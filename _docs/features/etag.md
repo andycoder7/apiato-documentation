@@ -1,6 +1,6 @@
 ---
-title: "ETag"
-category: "Features"
+title: "ETag 中间件"
+category: "功能"
 order: 102
 ---
 

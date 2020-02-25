@@ -1,6 +1,6 @@
 ---
-title: "Default Endpoints"
-category: "Features"
+title: "默认访问点"
+category: "功能"
 order: 11
 ---
 

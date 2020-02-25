@@ -1,6 +1,6 @@
 ---
-title: "Requests Monitor"
-category: "Features"
+title: "请求监控"
+category: "功能"
 order: 20
 ---
 

@@ -1,6 +1,6 @@
 ---
-title: "Rate Limiting"
-category: "Features"
+title: "速率限制"
+category: "功能"
 order: 16
 ---
 

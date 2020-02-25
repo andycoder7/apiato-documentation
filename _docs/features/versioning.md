@@ -1,6 +1,6 @@
 ---
-title: "API Versioning"
-category: "Features"
+title: "API 版本管理"
+category: "功能"
 order: 99
 ---
 

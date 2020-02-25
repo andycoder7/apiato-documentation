@@ -1,6 +1,6 @@
 ---
-title: "Data Caching"
-category: "Features"
+title: "数据缓存"
+category: "功能"
 order: 22
 ---
 

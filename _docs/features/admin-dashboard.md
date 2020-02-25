@@ -1,6 +1,6 @@
 ---
-title: "Admin Dashboard"
-category: "Features"
+title: "后台管理 Dashboard"
+category: "功能"
 order: 110
 ---
 

@@ -1,6 +1,6 @@
 ---
-title: "Hash ID"
-category: "Features"
+title: "哈希 ID"
+category: "功能"
 order: 14
 ---
 

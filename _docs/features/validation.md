@@ -1,6 +1,6 @@
 ---
-title: "Validation"
-category: "Features"
+title: "校验"
+category: "功能"
 order: 100
 ---
 

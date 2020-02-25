@@ -1,6 +1,6 @@
 ---
-title: "Profiler"
-category: "Features"
+title: "性能分析"
+category: "功能"
 order: 202
 ---
 

@@ -1,6 +1,6 @@
 ---
-title: "User Registration"
-category: "Features"
+title: "用户注册"
+category: "功能"
 order: 5
 ---
 
